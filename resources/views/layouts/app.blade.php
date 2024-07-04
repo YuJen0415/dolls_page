@@ -62,9 +62,9 @@
                                 {{ Auth::user()->name }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('profile.show', Auth::id()) }}">
-                                    個人資料
-                                </a>
+                            @if(Auth::check())
+                                <a class="nav-link" href="{{ route('profile.show', ['id' => Auth::id()]) }}">個人檔案</a>
+                            @endif    
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
@@ -96,7 +96,9 @@
                             <a class="nav-link" href="{{ route('posts.create') }}">上傳貼文</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('profile.show', Auth::id()) }}">個人檔案</a>
+                            @if(Auth::check())
+                                <a class="nav-link" href="{{ route('profile.show', ['id' => Auth::id()]) }}">個人檔案</a>
+                            @endif
                         </li>
                     </ul>
                 </div>
